@@ -17,7 +17,7 @@ function App() {
 }
 
 function Searchbar() {
-  return <span className="searchbar">Search</span>;
+  return <div className="searchbar">Search</div>;
 }
 
 type Job = {
