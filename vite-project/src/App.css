@@ -76,6 +76,11 @@ justify-content: center;
 
 
 }
+
+.jobImage {
+  margin-left: 10px;
+  margin-right:10px ;
+}
 .tag-container{
   margin-left: 2rem;
   margin-right: 2rem;
