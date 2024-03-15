@@ -1,6 +1,6 @@
-import jobdata from "./data";
+
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type Job = {
   id: number;
@@ -37,7 +37,28 @@ den uppdaterade filtreradeJobs passeras till Jobcard, och visar nu endast de fil
 }
 
 function App() {
-  const [filteredJobs, setFilteredJobs] = useState<Job[]>(jobdata);
+
+  const [jobData, setJobData] = useState<Job[]>([]);
+
+  useEffect(() => {
+    fetch("./src/data.json") 
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data: Job[]) => {
+        setJobData(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+
+
+ 
+  const [filteredJobs, setFilteredJobs] = useState<Job[]>(jobData);
 
   const handleSearch = (filteredData: Job[]) => {
     setFilteredJobs(filteredData);
@@ -45,13 +66,13 @@ function App() {
 
   return (
     <>
-      <div className="banner"></div>
+      <div className="banner"> <h2>Jobchaser</h2> </div>
       <section>
-        <Searchbar jobdata={jobdata} handleSearch={handleSearch} />
+        <Searchbar jobdata={jobData} handleSearch={handleSearch} />
       </section>
 
       <main>
-        <Jobcard jobdata={filteredJobs} />
+        <Jobcard jobdata={filteredJobs.length > 0 ? filteredJobs : jobData} />
       </main>
     </>
   );
