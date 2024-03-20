@@ -66,7 +66,7 @@ function App() {
 
   return (
     <>
-      <div className="banner"> <h2>Jobchaser</h2> </div>
+      <div className="bg-orange h-3 w-full" > <h2>Jobchaser</h2> </div>
       <section>
         <Searchbar jobdata={jobData} handleSearch={handleSearch} />
       </section>
@@ -106,7 +106,7 @@ function Searchbar({
   };
 
   return (
-    <section>
+    <section className="flex content-center">
       <label>Search</label>
       <input
         type="text"
@@ -120,21 +120,21 @@ function Searchbar({
 
 function Jobcard({ jobdata }: { jobdata: Job[] }) {
   const jobLang = jobdata.map((jobObj) => {
-    return jobObj.languages.map((lang) => <div className="tagsL">#{lang}</div>);
+    return jobObj.languages.map((lang) => <div className="bg-orange h-max text-black">#{lang}</div>);
   });
   const jobTool = jobdata.map((jobObj) => {
-    return jobObj.tools.map((tool) => <div className="tagsT">#{tool}</div>);
+    return jobObj.tools.map((tool) => <div className="bg-black h-max text-white">#{tool}</div>);
   });
 
   return jobdata.map((job, index) => (
     <div key={job.id}>
-      <div className="card-container">
-        <img className="jobImage" src={job.logo} alt={job.position} />
-        <div className="position-container">
+      <div className="flex items-center border-solid-black ">
+        <img className="mx-4" src={job.logo} alt={job.position} />
+        <div className="flex-col grow items-center content-center">
           <h3>
             {job.position} at {job.company}
           </h3>
-          <div className="info-container">
+          <div className="flex grow gap-5">
             <div className="info">
               {" "}
               Role: <br /> {job.role}
@@ -153,7 +153,7 @@ function Jobcard({ jobdata }: { jobdata: Job[] }) {
             </div>
           </div>
         </div>
-        <div className="tag-container">
+        <div className="flex grow gap-5">
           {jobLang[index]} {jobTool[index]}
         </div>
       </div>
