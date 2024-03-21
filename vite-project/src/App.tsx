@@ -78,6 +78,8 @@ function App() {
   );
 }
 
+
+
 function Searchbar({
   jobdata,
   handleSearch,
