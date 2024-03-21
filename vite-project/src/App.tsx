@@ -1,6 +1,6 @@
-
+import jobdata from "./data";
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 type Job = {
   id: number;
@@ -37,6 +37,7 @@ den uppdaterade filtreradeJobs passeras till Jobcard, och visar nu endast de fil
 }
 
 function App() {
+  const [filteredJobs, setFilteredJobs] = useState<Job[]>(jobdata);
 
   // function ProtectedRoute() {
   //   const isAuthenticated = false;
@@ -73,13 +74,13 @@ function App() {
 
   return (
     <>
-      <div className="bg-orange h-3 w-full" > <h2 className="text-red">Jobchaser</h2> </div>
+      <div className="banner"></div>
       <section>
-        <Searchbar jobdata={jobData} handleSearch={handleSearch} />
+        <Searchbar jobdata={jobdata} handleSearch={handleSearch} />
       </section>
 
       <main>
-        <Jobcard jobdata={filteredJobs.length > 0 ? filteredJobs : jobData} />
+        <Jobcard jobdata={filteredJobs} />
       </main>
     </>
   );
