@@ -38,6 +38,13 @@ den uppdaterade filtreradeJobs passeras till Jobcard, och visar nu endast de fil
 
 function App() {
 
+  // function ProtectedRoute() {
+  //   const isAuthenticated = false;
+
+  //   return isAuthenticated ? <Outlet /> : <Navigate to="/signin" replace />;
+  // }
+
+
   const [jobData, setJobData] = useState<Job[]>([]);
 
   useEffect(() => {
@@ -66,7 +73,7 @@ function App() {
 
   return (
     <>
-      <div className="bg-orange h-3 w-full" > <h2>Jobchaser</h2> </div>
+      <div className="bg-orange h-3 w-full" > <h2 className="text-red">Jobchaser</h2> </div>
       <section>
         <Searchbar jobdata={jobData} handleSearch={handleSearch} />
       </section>

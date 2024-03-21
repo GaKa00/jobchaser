@@ -1,7 +1,5 @@
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
 
 #root {
   
@@ -12,11 +10,6 @@
   flex-direction: column;
  
 }
-
-
-
-
-
 
 .searchbar {
   
@@ -29,20 +22,12 @@
 }
 
 
-
-
-
 .info-container > div {
   background-color: darkgray;
    color:black;
    height: max-content;
    width: max-content;
 }
-
-
-
-
-
 
 
 .info-container > div, .tagsL, .tagsT {
