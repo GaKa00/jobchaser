@@ -1,6 +1,6 @@
 import jobdata from "./data";
 import "./App.css";
-import { useState } from "react";
+import { useState , useEffect} from "react";
 
 type Job = {
   id: number;
