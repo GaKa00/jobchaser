@@ -1,29 +1,9 @@
 import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
-import { signOut } from "firebase/auth";
-import auth from "../firebase/firebase-config";
+
 
 
 function Navbar() {
-  const authContext = useContext(AuthContext);
-  console.log("authContext: ", authContext);
-
-  const isAuthenticated:boolean = authContext && authContext.user !== null;
-  console.log("isAuthenticated", isAuthenticated);
-
-  const handleSignOut = () => {
-    signOut(auth)
-      .then(() => {
-        console.log("User signed out successfully");
-        // Additional actions after sign out, such as redirecting to another page
-      })
-      .catch((error) => {
-        console.error("Error signing out:", error);
-      });
-  };
-
-
+ 
 
   return (
     <nav className="navbar">
@@ -37,7 +17,7 @@ function Navbar() {
         </li>
         <li>
           {" "}
-          <button onClick={handleSignOut}>Sign Out</button>
+          <button>Sign Out</button>
         </li>
       </ul>
       <div className="loggedin">

@@ -1,6 +1,7 @@
 import "./pages/Home"
 import "./App.css";
-import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, } from 'react-router-dom' 
+// add Navigate and Outlet to react-router
 // import Dashboard from "./components/Dashboard";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
@@ -9,11 +10,11 @@ import SignInPage from "./components/SignInPage";
 
 
 
-function ProtectedRoute() {
-  const isAuthenticated = false;
+// function ProtectedRoute() {
+//   const isAuthenticated = false;
 
-  return isAuthenticated ? <Outlet /> : <Navigate to="/signin" replace />;
-}
+//   return isAuthenticated ? <Outlet /> : <Navigate to="/signin" replace />;
+// }
 
 
 
