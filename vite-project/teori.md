@@ -49,3 +49,28 @@ skall hanteras efter rendering. tldr: async/await.
 
 Vad är syftet kring den s.k dependency-arrayen i useEffect?
 att minnas state eller variabler som är useeffectens dependency. Denna useeffect uppdateras alltså varje gång som denna array uppdateras.
+
+Vad menas med Reacts ekosystem? 
+
+Reacts Ekosystem menas med de olika bibliotek och verktyg som adderar till reacts funktionalitet. ex hook form och router.
+
+
+Nämn några andra viktiga bibliotek i Reacts ekosystem förutom React Router och React Hook Form
+
+React Window
+React Query
+Redux
+
+
+Vad är fördelen med att använda React Hook Form?
+
+Den simplifierar  form submits, coh gör det enklare att hämta data
+
+
+Vad är syftet med useContext? Vilket problem med props löser den?
+
+useContext är ett bra alternativ till prop-drilling, dvs att slippa kalla ned samma props i grandchildren och lä'ngre led av child komponenter.
+
+useContext tillåter en istället att flytta dessa props i form av en context, vilket förs via en provider, ned till den önskade komponenten.
+Vilka fördelar finns det att använda Tailwind / nackdelar? 
+Tailwind abstraherar och påskyndar css processer, dock så  kan det göra kod mer oläsbar, samt har den vissa begränsningar.
