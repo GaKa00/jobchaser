@@ -3,7 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 
-function SignUpForm() {
+
+function SignUpForm({auth}) {
 
     const navigate = useNavigate()
   const {
