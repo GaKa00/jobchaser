@@ -21,8 +21,6 @@ function Navbar() {
         </li>
       </ul>
       <div className="loggedin">
-        {/*  Make a usecontext to display if logged in or not.
-        If logged in, maybe make a profile modal */}
       </div>
     </nav>
   );
