@@ -16,6 +16,9 @@ function Navbar() {
           <Link to="/signup">Sign Up</Link>
         </li>
         <li>
+          <Link to="/">Find Jobs</Link>
+        </li>
+        <li>
           {" "}
           <button>Sign Out</button>
         </li>
