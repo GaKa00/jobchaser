@@ -1,18 +1,5 @@
-import { useEffect, useState } from "react";
+import Job from "../typescript/types";
 
-type Job = {
-  id: number;
-  company: string;
-  logo: string;
-  position: string;
-  role: string;
-  level: string;
-  postedAt: string;
-  contract: string;
-  location: string;
-  languages: string[];
-  tools: string[];
-};
 {
   /* App tar en usestate på filtreradejob, defaultas som jobdata i formen job[]  för att visa alla element till start
 app skapar en funktion handleSearch som tar enot filtrerad data och settar filtreradejobb till filtrerad data
@@ -33,9 +20,19 @@ den uppdaterade filtreradeJobs passeras till Jobcard, och visar nu endast de fil
 
 */
 }
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  searchJobs,
+  filterByToolsAndLanguages,
+  selectFilteredJobs,
+} from "../slices/FilterSlice"; // Adjust import path based on your project structure
+
+import Jobcard from "../components/Jobcard"; // Assuming you have Jobcard component in separate file
 
 function Home() {
-  const [jobData, setJobData] = useState<Job[]>([]);
+  const dispatch = useDispatch();
+  const jobData = useSelector(selectFilteredJobs);
 
   useEffect(() => {
     fetch("./src/data.json")
@@ -46,114 +43,28 @@ function Home() {
         return response.json();
       })
       .then((data: Job[]) => {
-        setJobData(data);
+        // Dispatch action to set initial job data in Redux store
+        dispatch(filterByToolsAndLanguages(data));
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }, []);
+  }, [dispatch]);
 
-  const [filteredJobs, setFilteredJobs] = useState<Job[]>(jobData);
-
-  const handleSearch = (filteredData: Job[]) => {
-    setFilteredJobs(filteredData);
+  const handleSearch = (searchTerm: string) => {
+    // Dispatch action to search jobs based on search term
+    dispatch(searchJobs(searchTerm));
   };
 
   return (
     <>
-    
-      <section>
-        <Searchbar jobdata={jobData} handleSearch={handleSearch} />
-      </section>
-
       <main>
-        <Jobcard jobdata={filteredJobs.length > 0 ? filteredJobs : jobData} />
+        {/* Pass job data and search function directly to Jobcard component */}
+        <Jobcard jobdata={jobData} handleSearch={handleSearch} />
       </main>
     </>
   );
 }
 
-function Searchbar({
-  jobdata,
-  handleSearch,
-}: {
-  jobdata: Job[];
-  handleSearch: (filteredData: Job[]) => void;
-}) {
-  const [searchInput, setSearchInput] = useState("");
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    const searchTerm = e.target.value.trim().toLowerCase();
-    setSearchInput(searchTerm);
-
-    const filterJobs = jobdata.filter((job: Job) => {
-      return (
-        job.company.toLowerCase().includes(searchTerm) ||
-        job.level.toLowerCase().includes(searchTerm) ||
-        job.position.toLowerCase().includes(searchTerm) ||
-        job.contract.toLowerCase().includes(searchTerm) ||
-        job.role.toLowerCase().includes(searchTerm)
-      );
-    });
-
-    handleSearch(filterJobs);
-  };
-
-  return (
-    <section>
-      <label>Search</label>
-      <input
-        type="text"
-        placeholder="Search Jobs..."
-        onChange={handleChange}
-        value={searchInput}
-      />
-    </section>
-  );
-}
-
-function Jobcard({ jobdata }: { jobdata: Job[] }) {
-  const jobLang = jobdata.map((jobObj) => {
-    return jobObj.languages.map((lang) => <div className="tagsL">#{lang}</div>);
-  });
-  const jobTool = jobdata.map((jobObj) => {
-    return jobObj.tools.map((tool) => <div className="tagsT">#{tool}</div>);
-  });
-
-  return jobdata.map((job, index) => (
-    <div key={job.id}>
-      <div className="card-container">
-        <img className="jobImage" src={job.logo} alt={job.position} />
-        <div className="position-container">
-          <h3>
-            {job.position} at {job.company}
-          </h3>
-          <div className="info-container">
-            <div className="info">
-              {" "}
-              Role: <br /> {job.role}
-            </div>
-            <div className="info">
-              {" "}
-              Level: <br /> {job.level}
-            </div>
-            <div className="info">
-              {" "}
-              Contract: <br /> {job.contract}
-            </div>
-            <div className="info">
-              {" "}
-              Location: <br /> {job.location}
-            </div>
-          </div>
-        </div>
-        <div className="tag-container">
-          {jobLang[index]} {jobTool[index]}
-        </div>
-      </div>
-    </div>
-  ));
-}
-
 export default Home;
+

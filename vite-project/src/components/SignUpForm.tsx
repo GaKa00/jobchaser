@@ -13,7 +13,7 @@ function SignUpForm() {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<FormData>(); // Specify the form data type
+  } = useForm<FormData>();
 
   const formSubmit = (data: FormData) => {
     console.log("Form Submitted: ", data);
