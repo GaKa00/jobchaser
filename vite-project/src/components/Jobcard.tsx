@@ -22,8 +22,11 @@ const Jobcard: React.FC<JobcardProps> = ({ jobdata, onSearch }) => {
         onChange={(e) => onSearch(e.target.value)}
         className="search-input"
       />
+      <div className="flex">
+
       <Dropdown title={'Filter by tools'}  tools={tools} />
       <Dropdown2 title={'Filter by languages'}  languages={languages}/>
+      </div>
 
       {/* <button >Filter by Tools</button>
       <button onClick={() => dispatch(filterByToolsAndLanguages({ tools: ['React'], languages: [] }))}>Filter by Languages</button> */}
