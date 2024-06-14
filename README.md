@@ -17,6 +17,7 @@ Vad menas med one-way-dataflow?
 
 
 Hur kan man använda sig av conditionell rendering i React?
+En metoden för conditionell rendering är ex. if-else sats, eller ternary operatorn.
 
 
 Vad är state i React?
@@ -27,10 +28,14 @@ Vad är det för skillnad mellan state och props?
         defineras i komponenten.
 
 Vad menas med en kontrollerad komponent i React?
+En kontrollerad komponent hanterar användarindata, Användardata lagras i state. callbacks används för att uppdatera state.
+
 
 Vad är en callback handler?
+En callback handler är en funktion vilket  utförs som svar på en händelse.
 
 Vad menas med "lifting state up"?
+ lifting state up flyttar dtan i en state  till en gemensam förälderkomponent, så att datan kan disponeras ut över flera underkomponenter via props.
 
 Vad är syftet med useEffect-hook i React?
         Useeffect används till att skapa sideffekter (dvs kod som körs, oberoende av komponenten (och ej  behöver uppdateras i likadan takt.)), t.ex. datahämtning
@@ -54,7 +59,23 @@ Vilka fördelar finns det att använda Tailwind / nackdelar?
         Tailwind ger snabb och responsiv styling.Dock pga dess mer komplexa syntax kan den vara svårare att underhålla.
 
 Vad är Redux Toolkit? 
+Redux Toolkit är ett  tillägg till Redux som gör det enklare att skriva i Redux.
 
 När, i vilka situationer vill man använda Redux Toolkit?
+Om man ex har en komplicerad applikatiion som kräver global överförning av data  på en nivå där usecontext ej är tillräckligt kan redux toolkit vara en neccessitet.
+
 
 Beskriv typiska områden hur man använder Typescript i React? (ex props, event, useReducer, etc)
+Typescript kan användas i ex props,  usereducer och api-anrop.
+
+De används på så sätt för att säkerställa att en variabel är av en viss typ innan ma hanterar den.
+
+exempel på detts skule vara
+
+interface UserProps {
+  id: number;
+  name: string;
+  email: string;
+}
+
+(props:UserProps)
